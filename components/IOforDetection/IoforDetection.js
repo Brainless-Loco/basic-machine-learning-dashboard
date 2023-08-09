@@ -6,6 +6,7 @@ import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, D
 import './IoForDetection.css'
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import CircularProgress from '@mui/material/CircularProgress';
+import axios from 'axios';
 
 export default function IoforDetection() {
 
@@ -20,11 +21,31 @@ export default function IoforDetection() {
         navigator.clipboard.readText().then((clipText) => settweetText(clipText));
     }
 
+    
 
     const classifyTheTweet = ()=>{
+        setloading(true)
+        setmodalVisible(true)
 
+        const data = {
+            tweet_text: tweetText // Replace with the actual tweet text
+        }
+        const flaskAPIEndpoint = `http://192.168.0.108:5000//`;
 
-    }
+        axios.post(flaskAPIEndpoint, data)
+        .then(response => {
+          // Handle the response data
+          console.log(response.data.response[2]);
+          response.data.response[2] == '0'?setharmFulText(false):setharmFulText(true);
+          setloading(false)
+        })
+        .catch(error => {
+          // Handle any errors that occur during the request
+          console.error(error);
+        });
+        
+      }
+
 
     return (
         <Box sx={{width:'100%',display:'flex',justifyContent:'center',flexDirection:'column'}}>
@@ -62,7 +83,7 @@ export default function IoforDetection() {
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description" sx={{fontSize:'25px',color:'grey'}}>
                                 This Tweet is 
-                                {harmFulText?
+                                {!harmFulText?
                                     <Typography sx={{color:'green',fontWeight:'bold',display:'inline-block',fontSize:'25px'}}>&nbsp;not a Harmful tweet</Typography>
                                     :
                                     <Typography sx={{color:'red',fontWeight:'bold',display:'inline-block',fontSize:'25px'}}>&nbsp;a Harmful tweet</Typography>
