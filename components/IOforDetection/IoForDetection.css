@@ -1,0 +1,18 @@
+.classifyBtn{
+    background-color: #1d274f;
+    border:2px solid transparent;
+    font-weight: bolder;
+}
+.classifyBtn:hover{
+    border-color: #1d274f;
+    background-color: rgb(238, 237, 237);
+    color: #1d274f;
+}
+.pasteBtn{
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    cursor: grab !important;
+    padding:10px;
+
+}

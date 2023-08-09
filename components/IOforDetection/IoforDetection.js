@@ -1,17 +1,84 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
-import { Box, Button } from '@mui/material';
-import { useState } from 'react';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
+import './IoForDetection.css'
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function IoforDetection() {
 
     const [tweetText, settweetText] = useState('')
-    console.log(tweetText)
+    const [loading, setloading] = useState(false)
+    const [modalVisible, setmodalVisible] = useState(false)
+    const [harmFulText, setharmFulText] = useState(false)
+
+
+    const pasteOnCLik = ()=>{
+        console.log("clicked")
+        navigator.clipboard.readText().then((clipText) => settweetText(clipText));
+    }
+
+
+    const classifyTheTweet = ()=>{
+
+
+    }
 
     return (
         <Box sx={{width:'100%',display:'flex',justifyContent:'center',flexDirection:'column'}}>
-            <TextField sx={{width:'80%',margin:'auto'}} onChange={(e)=>{settweetText(e.target.value)}} id="outlined-basic" label="Write a Tweet" variant="outlined" />
-            <Button sx={{backgroundColor:'green'}}>Classify</Button>
+            <Box sx={{width:'80%',margin:'auto',display:'flex',justifyContent:'center',overflow:'hidden',height:'50vh',alignItems:'center'}}>
+                <TextField value={tweetText} sx={{width:'100%',borderRadius:'100px'}} rows={10} multiline={true} onChange={(e)=>{settweetText(e.target.value)}} id="outlined-basic" label="Write a Tweet to classify" variant="outlined" />
+            </Box>
+            
+            <Button onClick={classifyTheTweet} className='classifyBtn' sx={{backgroundColor:'green', width:'50%',margin:'auto',marginTop:'10px',color:'white'}}>Classify</Button>
+
+            <Dialog
+                open={modalVisible}
+                onClose={()=>{setmodalVisible(false)}}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                fullWidth={'xl'}
+            >
+                {
+                    loading?
+                    <DialogContent sx={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+                        <Box sx={{width:'100%',textAlign:'center'}}>
+                            <CircularProgress size={70} sx={{color:'#1d274f',width:'100%',}}/>
+
+                        </Box>
+                        <Box sx={{width:'100%',textAlign:'center',marginTop:'10px'}}>
+                            <Typography sx={{color:'#1d274f',fontWeight:'bold'}}>
+                                Classifying
+                            </Typography>
+                        </Box>
+                    </DialogContent>
+                    :
+                    <>
+                        <DialogTitle sx={{color:'#1d274f',fontWeight:'600'}} id="alert-dialog-title">
+                                {"Classification Result"}
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description" sx={{fontSize:'25px',color:'grey'}}>
+                                This Tweet is 
+                                {harmFulText?
+                                    <Typography sx={{color:'green',fontWeight:'bold',display:'inline-block',fontSize:'25px'}}>&nbsp;not a Harmful tweet</Typography>
+                                    :
+                                    <Typography sx={{color:'red',fontWeight:'bold',display:'inline-block',fontSize:'25px'}}>&nbsp;a Harmful tweet</Typography>
+                                }
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button sx={{fontWeight:'bold'}} onClick={()=>{setmodalVisible(false)}}>Close</Button>
+                        </DialogActions>
+                    </>
+
+                }
+                
+                
+               
+            </Dialog>
         </Box>
     )
 }
