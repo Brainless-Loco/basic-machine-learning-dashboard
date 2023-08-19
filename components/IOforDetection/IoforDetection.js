@@ -30,7 +30,7 @@ export default function IoforDetection() {
         const data = {
             tweet_text: tweetText // Replace with the actual tweet text
         }
-        const flaskAPIEndpoint = `http://192.168.0.108:5000//`;
+        const flaskAPIEndpoint = `http://192.168.0.108:5000/`; ///Replace everytime for evert local run
 
         axios.post(flaskAPIEndpoint, data)
         .then(response => {
@@ -82,12 +82,13 @@ export default function IoforDetection() {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description" sx={{fontSize:'25px',color:'grey'}}>
-                                This Tweet is 
+                                This Tweet is a
                                 {!harmFulText?
-                                    <Typography sx={{color:'green',fontWeight:'bold',display:'inline-block',fontSize:'25px'}}>&nbsp;not a Harmful tweet</Typography>
+                                    <Typography sx={{color:'green',fontWeight:'bold',display:'inline-block',fontSize:'25px'}}>&nbsp;Not Harmful&nbsp;</Typography>
                                     :
-                                    <Typography sx={{color:'red',fontWeight:'bold',display:'inline-block',fontSize:'25px'}}>&nbsp;a Harmful tweet</Typography>
+                                    <Typography sx={{color:'red',fontWeight:'bold',display:'inline-block',fontSize:'25px'}}>&nbsp;Harmful&nbsp;</Typography>
                                 }
+                                tweet
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
