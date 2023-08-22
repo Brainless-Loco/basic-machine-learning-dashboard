@@ -1,0 +1,12 @@
+.btnHoverEffect{
+    /* background-color: red !important; */
+}
+.btnHoverText{
+
+}
+.btnHoverEffect:hover{
+    background-color: #ededed;
+}
+.btnHoverEffect:hover .btnHoverText{
+    color:#1d274f;
+}

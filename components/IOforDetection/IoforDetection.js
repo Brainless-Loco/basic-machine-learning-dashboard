@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import './IoForDetection.css'
@@ -21,8 +21,6 @@ export default function IoforDetection() {
         navigator.clipboard.readText().then((clipText) => settweetText(clipText));
     }
 
-    
-
     const classifyTheTweet = ()=>{
         setloading(true)
         setmodalVisible(true)
@@ -30,6 +28,8 @@ export default function IoforDetection() {
         const data = {
             tweet_text: tweetText // Replace with the actual tweet text
         }
+
+
         const flaskAPIEndpoint = `http://192.168.0.108:5000/`; ///Replace everytime for evert local run
 
         axios.post(flaskAPIEndpoint, data)
