@@ -1,0 +1,7 @@
+.ModelSummaryBtn{
+    font-weight: bold;
+}
+.ModelSummaryBtn:hover{
+    color: white !important;
+    background-color: #061657;
+}
