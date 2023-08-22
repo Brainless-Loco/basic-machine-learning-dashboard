@@ -4,68 +4,27 @@ import HTMLHEAD from '@/components/HTMLHEAD/HTMLHEAD'
 import Menubar from '@/components/Header/Menubar'
 import { Box, Typography } from '@mui/material'
 import Image from 'next/image'
+import ImageBox from '@/components/SectionForImage/ImageBox'
 
 export default function page() {
   return (
     <html>
       <HTMLHEAD title ='Model Summary'/>
-      <body className='body'>
+      <body class='body'>
         <Menubar model_summary={false}/>
-        <Box sx={{display:'flex',justifyContent:'space-evenly',flexWrap:'wrap',gap:'20px'}}>
-            <Box sx={{minHeight:'200px',minWidth:'40%',maxHeight:'400px',maxWidth:'45%',overflow:'hidden', border:'1px solid gray',borderRadius:'10px',overflow:'hidden'}}>
-                <Box sx={{width:'100%',backgroundColor:'white',padding:'5px 10px',borderBottom:'1px solid gray'}}>
-                    <Typography variant="h6" sx={{fontWeight:'700',fontFamily:'monospace'}} color={'#1d274f'}  gutterBottom>
-                      Roc Curve
-                    </Typography>
-                </Box>
-                <Box sx={{display:'flex',justifyContent:'center'}}>
-                    <Image
-                      src="/assets/conmat.png"
-                      alt="Roc Curver"
-                      width={400}
-                      height={250}
-                      objectFit='contain'
-                      quality={100}
-                      style={{border:'1px solid gray'}}
-                     />
-                </Box>
-            </Box>
-            <Box sx={{minHeight:'200px',minWidth:'40%',maxHeight:'400px',maxWidth:'45%',overflow:'hidden', border:'1px solid gray',borderRadius:'10px',overflow:'hidden'}}>
-                <Box sx={{width:'100%',backgroundColor:'white',padding:'5px 10px',borderBottom:'1px solid gray'}}>
-                    <Typography variant="h6" sx={{fontWeight:'700',fontFamily:'monospace'}} color={'#1d274f'} gutterBottom>
-                      Roc Curve
-                    </Typography>
-                </Box>
-                <Box sx={{display:'flex',justifyContent:'center'}}>
-                    <Image
-                      src="/assets/conmat.png"
-                      alt="Roc Curver"
-                      width={400}
-                      height={250}
-                      objectFit='contain'
-                      quality={100}
-                      style={{border:'1px solid gray'}}
-                     />
-                </Box>
-            </Box>
-            <Box sx={{minHeight:'200px',minWidth:'40%',maxHeight:'400px',maxWidth:'45%',overflow:'hidden', border:'1px solid gray',borderRadius:'10px',overflow:'hidden'}}>
-                <Box sx={{width:'100%',backgroundColor:'white',padding:'5px 10px',borderBottom:'1px solid gray'}}>
-                    <Typography variant="h6" sx={{fontWeight:'700',fontFamily:'monospace'}} gutterBottom>
-                      Roc Curve
-                    </Typography>
-                </Box>
-                <Box sx={{display:'flex',justifyContent:'center'}}>
-                    <Image
-                      src="/assets/conmat.png"
-                      alt="Roc Curver"
-                      width={400}
-                      height={250}
-                      objectFit='contain'
-                      quality={100}
-                      style={{border:'1px solid gray'}}
-                     />
-                </Box>
-            </Box>
+        <Box sx={{display:'flex',justifyContent:'space-evenly',flexWrap:'wrap',flexDirection:'row'}}>
+            <ImageBox title={"Wordcloud"} source={"/assets/wordcloud.png"} height={500} width={520} />
+            
+            <ImageBox title={"Roberta Update Confusion Matrix"} source={"/assets/robertaupdatecon.png"} height={400} width={600} />
+            
+            <ImageBox title={"Roberta Roc Curve"} source={"/assets/robertaroc.png"} height={500} width={500} />
+            
+            <ImageBox title={"Machinelearning Model Roc Curve analysis"} source={"/assets/MachinelearningModelRoc Curve analysis.png"} height={450} width={600} />
+            
+            <ImageBox title={"Compartive Matrix Analysis"} source={"/assets/compartiveMatrixAnalysis.png"} height={520} width={600} />
+            
+            <ImageBox title={"Comparison With Related Works"} source={"/assets/Co.png"} height={520} width={500} />
+            
         </Box>
 
       </body>
