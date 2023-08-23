@@ -23,12 +23,12 @@ export default function Menubar(props) {
         {
           model_summary? 
           <Link  href='/model-summary'> 
-            <Button className='ModelSummaryBtn'  sx={{height:'100%',width:'100%',cursor:'pointer',backgroundColor:'white',border:'1px solid white',padding:'10px',color:'#1d274f',borderRadius:'6px',fontWeight:'500'}}>
+            <Button className='ModelSummaryBtn'  sx={{padding:'10px'}}>
               Model Summary
             </Button>
           </Link>:
           <Link  href='/'> 
-            <Button className='ModelSummaryBtn'  sx={{height:'100%',width:'100%',cursor:'pointer',backgroundColor:'white',border:'1px solid white',padding:'10px 30px',color:'#1d274f',borderRadius:'6px',fontWeight:'500'}}>
+            <Button className='ModelSummaryBtn'  sx={{padding:'10px 30px'}}>
               Home
             </Button>
           </Link>
