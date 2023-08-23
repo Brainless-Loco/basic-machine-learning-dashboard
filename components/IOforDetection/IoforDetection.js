@@ -7,6 +7,7 @@ import './IoForDetection.css'
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
+import getIPV4 from '../LocalIP';
 
 export default function IoforDetection() {
 
@@ -22,26 +23,31 @@ export default function IoforDetection() {
     }
 
     const classifyTheTweet = ()=>{
+
+        if(tweetText.length<1) return;
+
         setloading(true)
         setmodalVisible(true)
+
 
         const data = {
             tweet_text: tweetText // Replace with the actual tweet text
         }
 
-
-        const flaskAPIEndpoint = `http://192.168.0.108:5000/`; ///Replace everytime for evert local run
+        // const flaskAPIEndpoint = `http://192.168.0.116:5000`; ///Replace everytime for every local run
+        const flaskAPIEndpoint = `http://${getIPV4()}:5000`; 
 
         axios.post(flaskAPIEndpoint, data)
         .then(response => {
           // Handle the response data
-          console.log(response.data.response[2]);
+        //   console.log(response.data.response[2]);
           response.data.response[2] == '0'?setharmFulText(false):setharmFulText(true);
           setloading(false)
         })
         .catch(error => {
           // Handle any errors that occur during the request
           console.error(error);
+          setloading(false)
         });
         
       }
@@ -52,7 +58,7 @@ export default function IoforDetection() {
             <Box sx={{width:'80%',margin:'auto',display:'flex',justifyContent:'center',overflow:'hidden',height:'50vh',alignItems:'center'}}>
                 <TextField value={tweetText} sx={{width:'100%',borderRadius:'100px'}} rows={10} multiline={true} onChange={(e)=>{settweetText(e.target.value)}} id="outlined-basic" label="Write a Tweet to classify" variant="outlined" />
             </Box>
-            
+            <Button onClick={pasteOnCLik} className='pasteBtn' sx={{backgroundColor:'green', width:'auto',margin:'auto',marginTop:'10px',color:'white'}}> <ContentPasteIcon/></Button>
             <Button onClick={classifyTheTweet} className='classifyBtn' sx={{backgroundColor:'green', width:'50%',margin:'auto',marginTop:'10px',color:'white'}}>Classify</Button>
 
             <Dialog
@@ -88,11 +94,11 @@ export default function IoforDetection() {
                                     :
                                     <Typography sx={{color:'red',fontWeight:'bold',display:'inline-block',fontSize:'25px'}}>&nbsp;Harmful&nbsp;</Typography>
                                 }
-                                tweet
+                                tweet.
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button sx={{fontWeight:'bold'}} onClick={()=>{setmodalVisible(false)}}>Close</Button>
+                            <Button sx={{fontWeight:'bold',border:'2px solid #1d274f',color:'#1d274f'}} onClick={()=>{setmodalVisible(false)}}>Close</Button>
                         </DialogActions>
                     </>
 

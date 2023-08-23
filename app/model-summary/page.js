@@ -9,7 +9,7 @@ import ImageBox from '@/components/SectionForImage/ImageBox'
 export default function page() {
   return (
     <html>
-      <HTMLHEAD title ='Model Summary'/>
+      <HTMLHEAD title ='Model Summar | Tithi Das'/>
       <body class='body'>
         <Menubar model_summary={false}/>
         <Box sx={{display:'flex',justifyContent:'space-evenly',flexWrap:'wrap',flexDirection:'row'}}>

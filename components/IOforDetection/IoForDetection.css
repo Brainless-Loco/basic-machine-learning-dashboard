@@ -10,9 +10,12 @@
 }
 .pasteBtn{
     position: absolute;
-    top: 15%;
+    top: 14%;
     right: 10%;
-    cursor: grab !important;
+    cursor: pointer;
     padding:10px;
+    border: 3px solid #1d274f;
+    background-color: transparent;
+    color: #1d274f;
 
 }

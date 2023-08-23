@@ -1,8 +1,14 @@
 const { networkInterfaces } = require('os');
+const ip = require('ip');
 
 const getIPV4 = () => {
-    const nets = networkInterfaces();
-    let ipv4Address = null;
+    // const nets = networkInterfaces();
+
+    // let ipv4Address = null;
+
+    const ipv4Address2 = ip.address();
+    
+    return ipv4Address2
 
     for (const name of Object.keys(nets)) {
         for (const net of nets[name]) {
